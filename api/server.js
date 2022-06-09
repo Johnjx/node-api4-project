@@ -1,8 +1,10 @@
 const express = require('express');
 const userModel = require('./users/usersModel');
+const cors = require('cors')
 
 const server = express();
 server.use(express.json())
+server.use(cors())
 
 server.get('/', (req, res) => {
     res.send(`<h1>${process.env.MESSAGE || 'Hello World!!'}</h1>`)
