@@ -5,7 +5,7 @@ const server = express();
 server.use(express.json())
 
 server.get('/', (req, res) => {
-    res.send(`<h1>${process.env.MESSAGE}</h1>`)
+    res.send(`<h1>${process.env.MESSAGE || 'Hello World!!'}</h1>`)
 })
 
 server.get('/api/users', (req, res, next) => {
@@ -57,7 +57,7 @@ server.use((err, req, res, next) => {
 
 server.use('*', (req, res) => {
     res.status(404).json({
-        message: `${req.method} to ${process.env.BASE_URL}${req.url} not found.`
+        message: `${req.method} to ${process.env.BASE_URL || 'http://...'}${req.url} not found.`
     })
 })
 
